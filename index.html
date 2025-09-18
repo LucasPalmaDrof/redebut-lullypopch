@@ -1,56 +1,112 @@
-<div class="lullypop-countdown" style="padding:50px 20px; text-align:center; color:white; font-family:'Arial Black', Arial, sans-serif; font-weight:bold; background:url('https://cdn.discordapp.com/attachments/1382369695411212349/1418266127888420874/aasd_2.png?ex=68cd7ec2&is=68cc2d42&hm=e51934b0eb5182a78e80684cd9189e736b7785a9b58a4545ec7a502df219409b&') no-repeat center center fixed; background-size:cover;">
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Lullypop</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
-  <h1 style="margin:0; font-size:80px;">REDEBUT LULLYPOP</h1>
-  <p style="margin:0 0 50px 0; font-size:30px;">Começa em 03.10.2025 às 16:00</p>
+    body {
+      font-family: 'Arial Black', Arial, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('https://cdn.discordapp.com/attachments/1382369695411212349/1418266127888420874/aasd_2.png?ex=68cd7ec2&is=68cc2d42&hm=e51934b0eb5182a78e80684cd9189e736b7785a9b58a4545ec7a502df219409b&') no-repeat center center fixed;
+      background-size: cover;
+    }
 
-  <div id="lullypop-timer" style="display:flex; justify-content:center; gap:20px; flex-wrap:nowrap; align-items:flex-end;"></div>
+    .lullypop-countdown {
+      text-align: center;
+      padding: 50px 20px;
+      font-weight: bold;
+    }
 
-  <p style="margin-top:50px; font-size:30px;">Your Gyaru Hare V-Mommy 🍭🐰</p>
-</div>
+    #lullypop-timer {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: nowrap;
+      align-items: flex-end;
+    }
 
-<script>
-const targetDate = new Date("Oct 3, 2025 16:00:00").getTime();
+    /* Responsividade para números grandes */
+    #lullypop-timer span {
+      display: block;
+    }
 
-const timer = setInterval(function() {
-  const now = new Date().getTime();
-  const distance = targetDate - now;
+    @media (max-width: 768px) {
+      .lullypop-countdown h1 {
+        font-size: 50px;
+      }
+      .lullypop-countdown p {
+        font-size: 20px;
+      }
+      #lullypop-timer div span:first-child {
+        font-size: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lullypop-countdown">
+    <h1 style="margin:0; font-size:80px;">REDEBUT LULLYPOP</h1>
+    <p style="margin:0 0 50px 0; font-size:30px;">Começa em 03.10.2025 às 16:00</p>
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    <div id="lullypop-timer"></div>
 
-  // Dois círculos alinhados verticalmente com os números
-  const doubleDot = `<span style="display:flex; flex-direction:column; justify-content:center; height:200px; margin:0 10px;">
-                        <span style="width:25px; height:25px; background:white; border-radius:50%; display:block; margin-bottom:10px;"></span>
-                        <span style="width:25px; height:25px; background:white; border-radius:50%; display:block;"></span>
-                     </span>`;
+    <p style="margin-top:50px; font-size:30px;">Your Gyaru Hare V-Mommy 🍭🐰</p>
+  </div>
 
-  document.getElementById("lullypop-timer").innerHTML = `
-    <div style="text-align:center; font-family:'Arial Black', Arial, sans-serif; font-weight:bold;">
-      <span style="font-size:200px; line-height:1; display:block; max-height:60vh; overflow:hidden; letter-spacing:-5px;">${days}</span>
-      <span style="font-size:24px; opacity:0.9; display:block; margin-top:5px;">Dias</span>
-    </div>
-    ${doubleDot}
-    <div style="text-align:center; font-family:'Arial Black', Arial, sans-serif; font-weight:bold;">
-      <span style="font-size:200px; line-height:1; display:block; max-height:60vh; overflow:hidden; letter-spacing:-5px;">${hours.toString().padStart(2,'0')}</span>
-      <span style="font-size:24px; opacity:0.9; display:block; margin-top:5px;">Horas</span>
-    </div>
-    ${doubleDot}
-    <div style="text-align:center; font-family:'Arial Black', Arial, sans-serif; font-weight:bold;">
-      <span style="font-size:200px; line-height:1; display:block; max-height:60vh; overflow:hidden; letter-spacing:-5px;">${minutes.toString().padStart(2,'0')}</span>
-      <span style="font-size:24px; opacity:0.9; display:block; margin-top:5px;">Minutos</span>
-    </div>
-    ${doubleDot}
-    <div style="text-align:center; font-family:'Arial Black', Arial, sans-serif; font-weight:bold;">
-      <span style="font-size:200px; line-height:1; display:block; max-height:60vh; overflow:hidden; letter-spacing:-5px;">${seconds.toString().padStart(2,'0')}</span>
-      <span style="font-size:24px; opacity:0.9; display:block; margin-top:5px;">Segundos</span>
-    </div>
-  `;
+  <script>
+    const targetDate = new Date("Oct 3, 2025 16:00:00").getTime();
 
-  if (distance < 0) {
-    clearInterval(timer);
-    document.getElementById("lullypop-timer").innerHTML = "O evento começou!";
-  }
-}, 1000);
-</script>
+    const timer = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      const doubleDot = `<span style="display:flex; flex-direction:column; justify-content:center; height:200px; margin:0 10px;">
+                            <span style="width:25px; height:25px; background:white; border-radius:50%; display:block; margin-bottom:10px;"></span>
+                            <span style="width:25px; height:25px; background:white; border-radius:50%; display:block;"></span>
+                         </span>`;
+
+      document.getElementById("lullypop-timer").innerHTML = `
+        <div style="text-align:center; font-weight:bold;">
+          <span style="font-size:200px; line-height:1; display:block; max-height:60vh; overflow:hidden; letter-spacing:-5px;">${days}</span>
+          <span style="font-size:24px; opacity:0.9; display:block; margin-top:5px;">Dias</span>
+        </div>
+        ${doubleDot}
+        <div style="text-align:center; font-weight:bold;">
+          <span style="font-size:200px; line-height:1; display:block; max-height:60vh; overflow:hidden; letter-spacing:-5px;">${hours.toString().padStart(2,'0')}</span>
+          <span style="font-size:24px; opacity:0.9; display:block; margin-top:5px;">Horas</span>
+        </div>
+        ${doubleDot}
+        <div style="text-align:center; font-weight:bold;">
+          <span style="font-size:200px; line-height:1; display:block; max-height:60vh; overflow:hidden; letter-spacing:-5px;">${minutes.toString().padStart(2,'0')}</span>
+          <span style="font-size:24px; opacity:0.9; display:block; margin-top:5px;">Minutos</span>
+        </div>
+        ${doubleDot}
+        <div style="text-align:center; font-weight:bold;">
+          <span style="font-size:200px; line-height:1; display:block; max-height:60vh; overflow:hidden; letter-spacing:-5px;">${seconds.toString().padStart(2,'0')}</span>
+          <span style="font-size:24px; opacity:0.9; display:block; margin-top:5px;">Segundos</span>
+        </div>
+      `;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("lullypop-timer").innerHTML = "O evento começou!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
