@@ -1,0 +1,50 @@
+<div class="lullypop-countdown" style="padding:50px 20px; text-align:center; color:white; font-family:'Times New Roman', Times, serif; font-weight:bold; background:url('https://media.discordapp.net/attachments/1382369695411212349/1418259422529978490/Design_sem_nome_1.png?ex=68cd7884&is=68cc2704&hm=f8adb4e5debe0bf2b6ad39e4ab70ad104ee8e3d5ca2cf73760f41454d9a6ba35&=&format=webp&quality=lossless&width=1570&height=856') no-repeat center center fixed; background-size:cover;">
+
+  <h1 style="margin:0; font-size:80px; font-weight:bold;">REDEBUT LULLYPOP</h1>
+  <p style="margin:0 0 50px 0; font-size:45px; font-weight:bold;">Começa em 03.10.2025 às 16:00</p>
+
+  <div id="lullypop-timer" style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; align-items:flex-end;"></div>
+
+  <p style="margin-top:50px; font-size:45px; font-weight:bold;">Your Gyaru Hare V-Mommy 🍭🐰</p>
+</div>
+
+<script>
+const targetDate = new Date("Oct 3, 2025 16:00:00").getTime();
+
+const timer = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("lullypop-timer").innerHTML = `
+    <div style="text-align:center; font-family:'Times New Roman', Times, serif; font-weight:bold;">
+      <span style="font-size:300px; line-height:1; display:block; max-height:60vh; overflow:hidden;">${days}</span>
+      <span style="font-size:24px; opacity:0.9; display:block; margin-top:8px;">Dias</span>
+    </div>
+    <div style="text-align:center; font-size:300px; line-height:1; font-family:'Times New Roman', Times, serif; font-weight:bold;">:</div>
+    <div style="text-align:center; font-family:'Times New Roman', Times, serif; font-weight:bold;">
+      <span style="font-size:300px; line-height:1; display:block; max-height:60vh; overflow:hidden;">${hours.toString().padStart(2,'0')}</span>
+      <span style="font-size:24px; opacity:0.9; display:block; margin-top:8px;">Horas</span>
+    </div>
+    <div style="text-align:center; font-size:300px; line-height:1; font-family:'Times New Roman', Times, serif; font-weight:bold;">:</div>
+    <div style="text-align:center; font-family:'Times New Roman', Times, serif; font-weight:bold;">
+      <span style="font-size:300px; line-height:1; display:block; max-height:60vh; overflow:hidden;">${minutes.toString().padStart(2,'0')}</span>
+      <span style="font-size:24px; opacity:0.9; display:block; margin-top:8px;">Minutos</span>
+    </div>
+    <div style="text-align:center; font-size:300px; line-height:1; font-family:'Times New Roman', Times, serif; font-weight:bold;">:</div>
+    <div style="text-align:center; font-family:'Times New Roman', Times, serif; font-weight:bold;">
+      <span style="font-size:300px; line-height:1; display:block; max-height:60vh; overflow:hidden;">${seconds.toString().padStart(2,'0')}</span>
+      <span style="font-size:24px; opacity:0.9; display:block; margin-top:8px;">Segundos</span>
+    </div>
+  `;
+
+  if (distance < 0) {
+    clearInterval(timer);
+    document.getElementById("lullypop-timer").innerHTML = "O evento começou!";
+  }
+}, 1000);
+</script>
